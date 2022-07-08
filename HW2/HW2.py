@@ -10,7 +10,7 @@ import numpy as np
 plt.style.use('dark_background')
 
 prob = np.array([0.05, 0.15, 0.40, 0.55, 0.25, 0.45, 0.48, 0.62, 0.67, 0.75])
-y_true = np.array([0] * 4 + [1] * 6)
+y_true = np.array([0]*4 + [1]*6)
 
 print(f'posterior probablities = {prob}')
 print(f'actual labels = {y_true}')
@@ -18,10 +18,8 @@ print(f'actual labels = {y_true}')
 # Cell 7
 # Question 2 part (d) continued
 
-
 def predict(pr, b):
     return (pr > b).astype(int)
-
 
 def get_fpr_tpr(y_t, y_p):
     cm = confusion_matrix(y_t, y_p)
@@ -29,10 +27,10 @@ def get_fpr_tpr(y_t, y_p):
     fpr = fp / max(fp + tn, 1)
     tpr = tp / max(tp + fn, 1)
     return fpr, tpr
-
+    
 
 fpr_tpr_list = []
-
+    
 # list of fpr and tpr
 for b in np.arange(0., 1., 0.05):
     y_pred = predict(prob, b)
@@ -54,7 +52,6 @@ plt.show()
 
 # Cell 8
 # Question 2 part (d) continued
-
 
 def roc_auc(fpr, tpr):
     indices = np.argsort(fpr)
@@ -83,7 +80,7 @@ filename = 'mnist_test.csv'
 mnist = np.genfromtxt(filename, delimiter=',')
 features, labels = mnist[:, 1:], mnist[:, 0]
 
-N = mnist.shape[0]
+N = mnist.shape[0] 
 feature_dimension = mnist.shape[1] - 1
 
 # part (a)
@@ -92,7 +89,6 @@ print(f'Feature Dimension = {feature_dimension}')
 
 # Cell 10
 # Question 3 part (b)
-
 
 def visualize(matrix):
     fig, axs = plt.subplots(nrows=4, ncols=5, figsize=(12, 10))
@@ -117,7 +113,7 @@ U, S, Vh = np.linalg.svd(X, full_matrices=False)
 
 S = np.log10(S)
 
-fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(10, 8))
+fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(10,8))
 
 ax.plot(np.arange(*S.shape), S, linewidth=2)
 ax.set_xlabel('Dimension')
@@ -132,7 +128,7 @@ V = Vh[:, :2]
 
 Z = np.array([X[i] @ V for i in range(len(X))])
 
-fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(10, 15))
+fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(10,15))
 
 label1 = labels == 1
 label8 = labels == 8
@@ -193,3 +189,4 @@ model = KNeighborsClassifier(n_neighbors=3).fit(X_train, y_train)
 cv3_scores = cross_val_score(model, X_train, y_train, cv=3)
 
 print(f'Mean of Cross Validation scores: {np.mean(cv3_scores)}')
+

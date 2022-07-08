@@ -22,16 +22,16 @@ def ipynb_to_py(filepath: str) -> str:
 
 if __name__ == '__main__':
     import os
-    # ignore_dirs = ['.git', '.ipynb_checkpoints']
-    # ignore_files = ['.gitignore', 'cleanup.py', 'ipynb_to_py.py']
-    # filenames = []
-    # ROOT = '.'
-    # for root, dirs, files in os.walk(ROOT, topdown=True):
-    #     dirs[:] = list(filter(lambda x: x not in ignore_dirs, dirs))
-    #     files[:] = list(filter(lambda x: x not in ignore_files and x.lower().endswith('.ipynb'), files))
-    #     filenames += list(map(lambda x: os.path.join(root, x), files))
+    ignore_dirs = ['.git', '.ipynb_checkpoints']
+    ignore_files = ['.gitignore', 'cleanup.py', 'ipynb_to_py.py']
+    filenames = []
+    ROOT = '.'
+    for root, dirs, files in os.walk(ROOT, topdown=True):
+        dirs[:] = list(filter(lambda x: x not in ignore_dirs, dirs))
+        files[:] = list(filter(lambda x: x not in ignore_files and x.lower().endswith('.ipynb'), files))
+        filenames += list(map(lambda x: os.path.join(root, x), files))
 
-    filenames = ['HW2/hw_PCA.ipynb']
+    # filenames = ['HW2/hw_PCA.ipynb']
     for filename in filenames:
         try:
             ipynb_to_py(filename)
