@@ -35,3 +35,4 @@ model.fit(X_train, y_train)
 # Cell 4
 accuracy = model.score(X_test, y_test) * 100
 print(f'accuracy = {accuracy:.3f}%')
+

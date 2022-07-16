@@ -85,7 +85,6 @@ data = np.genfromtxt(filename, delimiter=',')
 X_test = data[:, 0:1]
 y_test = data[:, -1]
 
-
 def get_pf(n: int) -> PolynomialFeatures:
     return PolynomialFeatures(degree=n, include_bias=False)
 
@@ -154,6 +153,8 @@ filename = 'RE_LR_data.csv'
 data = np.genfromtxt(filename, delimiter=',')
 
 X = data[:, :-1]
+# Again, numpy cannot read the first value for some reason
+X[0,0] = 1.71
 y = data[:, -1]
 
 print(f'{X.shape = }')
@@ -179,3 +180,4 @@ ax.scatter(xa, Y, c='royalblue')
 ax.plot(xa, y_pred, c='hotpink', linewidth=3)
 
 plt.show()
+
